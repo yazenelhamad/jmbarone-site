@@ -44,9 +44,18 @@ create table if not exists public.services (
   is_active boolean not null default true,
   meta_title text,
   meta_description text,
+  before_image_url text,
+  after_image_url text,
+  before_after_caption text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+-- Idempotent migration for existing deployments
+alter table public.services
+  add column if not exists before_image_url text,
+  add column if not exists after_image_url text,
+  add column if not exists before_after_caption text;
 
 -- ---------- testimonials -------------------------------------------------
 create table if not exists public.testimonials (

@@ -95,6 +95,41 @@ export function ServiceForm({
             <span className="text-sm text-charcoal-700">Active (visible on public site)</span>
           </label>
         </div>
+
+        {/* Before & After section — shown at the bottom of the public service page */}
+        <div className="card p-6 sm:p-8 space-y-4">
+          <div>
+            <h3 className="text-lg font-bold text-navy-900">Before & After</h3>
+            <p className="mt-1 text-sm text-charcoal-600">
+              Two photos shown side-by-side at the bottom of this service page.
+              Leave both blank to hide the section. Tip: upload images in{" "}
+              <a href="/admin/media" className="text-navy-700 underline hover:text-sky-600">
+                Media Library
+              </a>{" "}
+              first, then copy the URL.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <Field
+              label="Before image URL"
+              name="before_image_url"
+              defaultValue={service?.before_image_url ?? ""}
+              hint="Public URL to the BEFORE photo"
+            />
+            <Field
+              label="After image URL"
+              name="after_image_url"
+              defaultValue={service?.after_image_url ?? ""}
+              hint="Public URL to the AFTER photo"
+            />
+          </div>
+          <Field
+            label="Caption (optional)"
+            name="before_after_caption"
+            defaultValue={service?.before_after_caption ?? ""}
+            hint="e.g. Make-ready turn — Sunset Ridge Apartments"
+          />
+        </div>
         <SaveButton />
       </form>
 

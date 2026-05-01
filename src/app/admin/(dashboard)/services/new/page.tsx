@@ -21,6 +21,10 @@ async function createService(formData: FormData) {
     hero_image_url: String(formData.get("hero_image_url") ?? "") || null,
     meta_title: String(formData.get("meta_title") ?? "") || null,
     meta_description: String(formData.get("meta_description") ?? "") || null,
+    before_image_url: String(formData.get("before_image_url") ?? "") || null,
+    after_image_url: String(formData.get("after_image_url") ?? "") || null,
+    before_after_caption:
+      String(formData.get("before_after_caption") ?? "") || null,
     is_active: formData.get("is_active") === "on",
   };
   await supabase.from("services").insert(data);

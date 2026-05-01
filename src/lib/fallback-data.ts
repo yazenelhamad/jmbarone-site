@@ -55,6 +55,9 @@ export const FALLBACK_SERVICES: Service[] = [
     meta_title: "Carpet Cleaning & Water Extraction in DFW | JM Barone",
     meta_description:
       "Truck-mounted carpet cleaning and 24-hour water extraction for multifamily, commercial, and residential properties in Dallas / Fort Worth.",
+    before_image_url: null,
+    after_image_url: null,
+    before_after_caption: null,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -81,6 +84,9 @@ export const FALLBACK_SERVICES: Service[] = [
     meta_title: "Commercial & Multifamily Cleaning in DFW | JM Barone",
     meta_description:
       "Professional cleaning technicians for multifamily, commercial, and post-construction projects across DFW.",
+    before_image_url: null,
+    after_image_url: null,
+    before_after_caption: null,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -107,6 +113,9 @@ export const FALLBACK_SERVICES: Service[] = [
     meta_title: "Bathtub & Countertop Resurfacing in DFW | JM Barone",
     meta_description:
       "Affordable resurfacing for bathtubs, countertops, and tile in DFW — fast turnaround for multifamily turns.",
+    before_image_url: null,
+    after_image_url: null,
+    before_after_caption: null,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -132,6 +141,9 @@ export const FALLBACK_SERVICES: Service[] = [
     meta_title: "Tile & Grout Cleaning in DFW | JM Barone",
     meta_description:
       "Professional tile and grout cleaning for DFW properties — deep extraction and color restoration.",
+    before_image_url: null,
+    after_image_url: null,
+    before_after_caption: null,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -161,6 +173,9 @@ export const FALLBACK_SERVICES: Service[] = [
     meta_title: "Painting, Make-Ready, Welding & More in DFW | JM Barone",
     meta_description:
       "Painting, window cleaning, make-ready, trash outs, welding, pressure washing, tub replacements, machine rentals, and vinyl pet treatment for DFW multifamily and commercial properties.",
+    before_image_url: null,
+    after_image_url: null,
+    before_after_caption: null,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },

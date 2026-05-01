@@ -15,6 +15,7 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { CTASection } from "@/components/CTASection";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { BeforeAfter } from "@/components/BeforeAfter";
 import { ServiceJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd";
 import {
   getServiceBySlug,
@@ -292,6 +293,18 @@ export default async function ServicePage({
       <AnimateOnScroll>
         <ProcessSteps />
       </AnimateOnScroll>
+
+      {/* BEFORE & AFTER (rendered only when both photos are set in admin) */}
+      {service.before_image_url && service.after_image_url && (
+        <AnimateOnScroll>
+          <BeforeAfter
+            beforeUrl={service.before_image_url}
+            afterUrl={service.after_image_url}
+            caption={service.before_after_caption}
+            serviceTitle={service.title}
+          />
+        </AnimateOnScroll>
+      )}
 
       {/* RELATED SERVICES */}
       {related.length > 0 && (

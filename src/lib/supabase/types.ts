@@ -31,6 +31,9 @@ export type Service = {
   is_active: boolean;
   meta_title: string | null;
   meta_description: string | null;
+  before_image_url: string | null;
+  after_image_url: string | null;
+  before_after_caption: string | null;
   created_at: string;
   updated_at: string;
 };
