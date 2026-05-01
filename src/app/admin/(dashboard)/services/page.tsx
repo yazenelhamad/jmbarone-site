@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Edit, Plus, Power } from "lucide-react";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
-import { getServices } from "@/lib/content";
+import { getAllServicesForAdmin } from "@/lib/content";
 import type { Service } from "@/lib/supabase/types";
 
 async function toggleActive(formData: FormData) {
@@ -16,7 +16,7 @@ async function toggleActive(formData: FormData) {
 }
 
 export default async function ServicesPage() {
-  const services = await getServices();
+  const services = await getAllServicesForAdmin();
   return (
     <div>
       <div className="flex items-center justify-between flex-wrap gap-4">
@@ -45,9 +45,21 @@ export default async function ServicesPage() {
           </thead>
           <tbody className="divide-y divide-charcoal-100">
             {services.map((s: Service) => (
-              <tr key={s.id} className="hover:bg-charcoal-50/40">
+              <tr
+                key={s.id}
+                className={`hover:bg-charcoal-50/40 ${
+                  !s.is_active ? "bg-charcoal-50/40 opacity-70" : ""
+                }`}
+              >
                 <Td>
-                  <div className="font-semibold text-navy-900">{s.title}</div>
+                  <div className="font-semibold text-navy-900">
+                    {s.title}
+                    {!s.is_active && (
+                      <span className="ml-2 inline-flex items-center rounded-full bg-charcoal-200 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-charcoal-700">
+                        Hidden
+                      </span>
+                    )}
+                  </div>
                   <div className="text-xs text-charcoal-500 mt-0.5 max-w-md truncate">
                     {s.short_description}
                   </div>

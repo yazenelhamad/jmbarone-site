@@ -1,7 +1,7 @@
 import { revalidatePath } from "next/cache";
 import { ExternalLink, FileText, Plus, Power, Trash2, Upload } from "lucide-react";
 import { createClient, createServiceRoleClient } from "@/lib/supabase/server";
-import { getDocuments } from "@/lib/content";
+import { getAllDocumentsForAdmin } from "@/lib/content";
 
 async function createLink(formData: FormData) {
   "use server";
@@ -81,7 +81,7 @@ async function deleteDoc(formData: FormData) {
 }
 
 export default async function DocumentsManagerPage() {
-  const documents = await getDocuments();
+  const documents = await getAllDocumentsForAdmin();
   return (
     <div>
       <h1 className="text-3xl font-bold text-navy-900">Documents</h1>
@@ -183,12 +183,19 @@ export default async function DocumentsManagerPage() {
             </thead>
             <tbody className="divide-y divide-charcoal-100">
               {documents.map((d) => (
-                <tr key={d.id}>
+                <tr key={d.id} className={!d.is_active ? "opacity-60" : ""}>
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
                       <FileText className="h-4 w-4 text-sky-600" />
                       <div>
-                        <div className="font-semibold text-navy-900">{d.title}</div>
+                        <div className="font-semibold text-navy-900">
+                          {d.title}
+                          {!d.is_active && (
+                            <span className="ml-2 inline-flex items-center rounded-full bg-charcoal-200 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-charcoal-700">
+                              Hidden
+                            </span>
+                          )}
+                        </div>
                         {d.description && (
                           <div className="text-xs text-charcoal-500">{d.description}</div>
                         )}

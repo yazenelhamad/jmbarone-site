@@ -90,3 +90,53 @@ export async function getDocuments(): Promise<DocumentItem[]> {
     return FALLBACK_DOCUMENTS;
   }
 }
+
+// =========================================================================
+// Admin-only fetchers — include inactive rows so the owner can re-toggle
+// them. Public-site fetchers above stay filtered to is_active = true.
+// =========================================================================
+
+export async function getAllServicesForAdmin(): Promise<Service[]> {
+  if (!isSupabaseConfigured()) return FALLBACK_SERVICES;
+  try {
+    const supabase = createClient();
+    const { data } = await supabase
+      .from("services")
+      .select("*")
+      .order("display_order", { ascending: true });
+    if (!data || data.length === 0) return FALLBACK_SERVICES;
+    return data as Service[];
+  } catch {
+    return FALLBACK_SERVICES;
+  }
+}
+
+export async function getAllTestimonialsForAdmin(): Promise<Testimonial[]> {
+  if (!isSupabaseConfigured()) return FALLBACK_TESTIMONIALS;
+  try {
+    const supabase = createClient();
+    const { data } = await supabase
+      .from("testimonials")
+      .select("*")
+      .order("display_order", { ascending: true });
+    if (!data || data.length === 0) return FALLBACK_TESTIMONIALS;
+    return data as Testimonial[];
+  } catch {
+    return FALLBACK_TESTIMONIALS;
+  }
+}
+
+export async function getAllDocumentsForAdmin(): Promise<DocumentItem[]> {
+  if (!isSupabaseConfigured()) return FALLBACK_DOCUMENTS;
+  try {
+    const supabase = createClient();
+    const { data } = await supabase
+      .from("documents")
+      .select("*")
+      .order("display_order", { ascending: true });
+    if (!data || data.length === 0) return FALLBACK_DOCUMENTS;
+    return data as DocumentItem[];
+  } catch {
+    return FALLBACK_DOCUMENTS;
+  }
+}

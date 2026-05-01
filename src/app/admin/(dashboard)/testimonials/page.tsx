@@ -1,7 +1,7 @@
 import { revalidatePath } from "next/cache";
 import { Plus, Star, Trash2, Power } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
-import { getTestimonials } from "@/lib/content";
+import { getAllTestimonialsForAdmin } from "@/lib/content";
 
 async function createTestimonial(formData: FormData) {
   "use server";
@@ -39,7 +39,7 @@ async function deleteTestimonial(formData: FormData) {
 }
 
 export default async function TestimonialsPage() {
-  const testimonials = await getTestimonials();
+  const testimonials = await getAllTestimonialsForAdmin();
   return (
     <div>
       <h1 className="text-3xl font-bold text-navy-900">Testimonials</h1>
@@ -110,11 +110,21 @@ export default async function TestimonialsPage() {
             </div>
           ) : (
             testimonials.map((t) => (
-              <div key={t.id} className="card p-6">
-                <div className="flex gap-0.5">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                  ))}
+              <div
+                key={t.id}
+                className={`card p-6 ${!t.is_active ? "opacity-60" : ""}`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: t.rating }).map((_, i) => (
+                      <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  {!t.is_active && (
+                    <span className="inline-flex items-center rounded-full bg-charcoal-200 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-charcoal-700">
+                      Hidden
+                    </span>
+                  )}
                 </div>
                 <blockquote className="mt-3 text-sm text-charcoal-700 leading-relaxed">
                   &ldquo;{t.quote}&rdquo;
