@@ -15,6 +15,7 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { CTASection } from "@/components/CTASection";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { ServiceJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd";
 import {
   getServiceBySlug,
   getServices,
@@ -33,9 +34,24 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const service = await getServiceBySlug(params.slug);
   if (!service) return {};
+  const url = `/services/${service.slug}`;
   return {
     title: service.meta_title || service.title,
     description: service.meta_description || service.short_description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: service.meta_title || `${service.title} | JM Barone Enterprises`,
+      description: service.meta_description || service.short_description,
+      url,
+      type: "website",
+      images: service.hero_image_url ? [{ url: service.hero_image_url }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: service.meta_title || service.title,
+      description: service.meta_description || service.short_description,
+      images: service.hero_image_url ? [service.hero_image_url] : undefined,
+    },
   };
 }
 
@@ -55,6 +71,14 @@ export default async function ServicePage({
 
   return (
     <>
+      <ServiceJsonLd service={service} settings={settings} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/#services" },
+          { name: service.title, url: `/services/${service.slug}` },
+        ]}
+      />
       {/* HERO */}
       <section className="relative gradient-hero text-white overflow-hidden">
         <div className="mesh-blobs">
@@ -174,7 +198,7 @@ export default async function ServicePage({
                   className="animate-float rounded-full bg-sky-500 text-white shadow-2xl ring-4 ring-white/20 px-4 py-3 text-xs font-bold uppercase tracking-widest"
                   style={{ animationDelay: "-1s" }}
                 >
-                  Get a Quote
+                  Request Estimate
                 </div>
               </div>
             </div>

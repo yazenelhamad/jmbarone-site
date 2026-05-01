@@ -6,7 +6,15 @@ import { CTASection } from "@/components/CTASection";
 export const metadata: Metadata = {
   title: "Documents & Forms",
   description:
-    "Download insurance certificates, disclaimer forms, and policy documents from JM Barone Enterprises.",
+    "Download disclaimer forms and policy documents from JM Barone Enterprises — quick-access references for property managers.",
+  alternates: { canonical: "/documents" },
+  openGraph: {
+    title: "Documents & Forms | JM Barone Enterprises",
+    description:
+      "Disclaimer forms and policies for our property management partners.",
+    url: "/documents",
+    type: "website",
+  },
 };
 
 export default async function DocumentsPage() {

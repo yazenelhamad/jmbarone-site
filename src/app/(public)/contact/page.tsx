@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   title: "Contact & Estimate Request",
   description:
     "Request an estimate, contact JM Barone Enterprises by phone or email, or message us about your DFW property service needs.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact JM Barone Enterprises",
+    description:
+      "Tell us about your property — we'll respond with a clear, honest quote.",
+    url: "/contact",
+    type: "website",
+  },
 };
 
 export default async function ContactPage() {
