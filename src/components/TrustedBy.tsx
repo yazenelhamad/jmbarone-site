@@ -1,17 +1,12 @@
 import { Building2 } from "lucide-react";
+import { getTrustedPartners } from "@/lib/content";
 
-const COMPANIES = [
-  "Dominium Management",
-  "Cortland Management",
-  "Devonshire Real Estate",
-  "Multifamily Communities",
-  "Property Management Groups",
-  "Commercial Clients",
-];
+export async function TrustedBy() {
+  const partners = await getTrustedPartners();
+  if (!partners || partners.length === 0) return null;
 
-export function TrustedBy() {
   // Render the strip twice — the marquee animates -50% to create a seamless loop.
-  const items = [...COMPANIES, ...COMPANIES];
+  const items = [...partners, ...partners];
 
   return (
     <section className="border-y border-charcoal-100 bg-white">
@@ -21,14 +16,23 @@ export function TrustedBy() {
         </div>
         <div className="mt-6 marquee-mask overflow-hidden">
           <div className="marquee-track gap-12 sm:gap-16">
-            {items.map((c, i) => (
+            {items.map((p, i) => (
               <div
-                key={`${c}-${i}`}
+                key={`${p.id}-${i}`}
                 className="flex items-center gap-2.5 text-charcoal-400 hover:text-navy-800 transition-colors whitespace-nowrap"
               >
-                <Building2 className="h-5 w-5" />
+                {p.logo_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={p.logo_url}
+                    alt={p.name}
+                    className="h-7 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                  />
+                ) : (
+                  <Building2 className="h-5 w-5" />
+                )}
                 <span className="font-display font-semibold tracking-tight text-base sm:text-lg">
-                  {c}
+                  {p.name}
                 </span>
               </div>
             ))}

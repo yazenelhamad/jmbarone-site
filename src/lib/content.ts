@@ -7,12 +7,14 @@ import {
   FALLBACK_SERVICES,
   FALLBACK_SETTINGS,
   FALLBACK_TESTIMONIALS,
+  FALLBACK_TRUSTED_PARTNERS,
 } from "@/lib/fallback-data";
 import type {
   DocumentItem,
   Service,
   SiteSettings,
   Testimonial,
+  TrustedPartner,
 } from "@/lib/supabase/types";
 
 function isSupabaseConfigured() {
@@ -91,6 +93,22 @@ export async function getDocuments(): Promise<DocumentItem[]> {
   }
 }
 
+export async function getTrustedPartners(): Promise<TrustedPartner[]> {
+  if (!isSupabaseConfigured()) return FALLBACK_TRUSTED_PARTNERS;
+  try {
+    const supabase = createClient();
+    const { data } = await supabase
+      .from("trusted_partners")
+      .select("*")
+      .eq("is_active", true)
+      .order("display_order", { ascending: true });
+    if (!data || data.length === 0) return FALLBACK_TRUSTED_PARTNERS;
+    return data as TrustedPartner[];
+  } catch {
+    return FALLBACK_TRUSTED_PARTNERS;
+  }
+}
+
 // =========================================================================
 // Admin-only fetchers — include inactive rows so the owner can re-toggle
 // them. Public-site fetchers above stay filtered to is_active = true.
@@ -138,5 +156,20 @@ export async function getAllDocumentsForAdmin(): Promise<DocumentItem[]> {
     return data as DocumentItem[];
   } catch {
     return FALLBACK_DOCUMENTS;
+  }
+}
+
+export async function getAllTrustedPartnersForAdmin(): Promise<TrustedPartner[]> {
+  if (!isSupabaseConfigured()) return FALLBACK_TRUSTED_PARTNERS;
+  try {
+    const supabase = createClient();
+    const { data } = await supabase
+      .from("trusted_partners")
+      .select("*")
+      .order("display_order", { ascending: true });
+    if (!data || data.length === 0) return FALLBACK_TRUSTED_PARTNERS;
+    return data as TrustedPartner[];
+  } catch {
+    return FALLBACK_TRUSTED_PARTNERS;
   }
 }

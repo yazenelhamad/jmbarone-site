@@ -95,6 +95,18 @@ create table if not exists public.media (
   created_at timestamptz not null default now()
 );
 
+-- ---------- trusted_partners --------------------------------------------
+-- Property-management companies shown in the "Trusted by DFW property managers"
+-- marquee on the home page. Editable from /admin/trusted-by.
+create table if not exists public.trusted_partners (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  logo_url text,
+  display_order int not null default 100,
+  is_active boolean not null default true,
+  created_at timestamptz not null default now()
+);
+
 -- ---------- contact_submissions -----------------------------------------
 create table if not exists public.contact_submissions (
   id uuid primary key default gen_random_uuid(),
@@ -146,6 +158,15 @@ alter table public.testimonials enable row level security;
 alter table public.documents enable row level security;
 alter table public.media enable row level security;
 alter table public.contact_submissions enable row level security;
+alter table public.trusted_partners enable row level security;
+
+-- trusted_partners: public read; auth write
+drop policy if exists "trusted_partners_read_all" on public.trusted_partners;
+create policy "trusted_partners_read_all" on public.trusted_partners
+  for select using (true);
+drop policy if exists "trusted_partners_write_auth" on public.trusted_partners;
+create policy "trusted_partners_write_auth" on public.trusted_partners
+  for all to authenticated using (true) with check (true);
 
 -- site_settings: public read; auth write
 drop policy if exists "site_settings_read_all" on public.site_settings;

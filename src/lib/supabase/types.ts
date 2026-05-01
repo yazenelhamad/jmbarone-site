@@ -73,6 +73,15 @@ export type MediaItem = {
   created_at: string;
 };
 
+export type TrustedPartner = {
+  id: string;
+  name: string;
+  logo_url: string | null;
+  display_order: number;
+  is_active: boolean;
+  created_at: string;
+};
+
 export type ContactSubmission = {
   id: string;
   name: string;

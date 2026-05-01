@@ -6,6 +6,7 @@ import type {
   Service,
   SiteSettings,
   Testimonial,
+  TrustedPartner,
 } from "@/lib/supabase/types";
 
 export const FALLBACK_SETTINGS: SiteSettings = {
@@ -218,6 +219,12 @@ export const FALLBACK_TESTIMONIALS: Testimonial[] = [
     display_order: 30,
     created_at: new Date().toISOString(),
   },
+];
+
+export const FALLBACK_TRUSTED_PARTNERS: TrustedPartner[] = [
+  { id: "p-dominium", name: "Dominium Management", logo_url: null, display_order: 10, is_active: true, created_at: new Date().toISOString() },
+  { id: "p-cortland", name: "Cortland Management", logo_url: null, display_order: 20, is_active: true, created_at: new Date().toISOString() },
+  { id: "p-devonshire", name: "Devonshire Real Estate", logo_url: null, display_order: 30, is_active: true, created_at: new Date().toISOString() },
 ];
 
 // COI ("2025-2026 Insurance") removed at the owner's request.
