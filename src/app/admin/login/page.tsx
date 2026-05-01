@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { LoginForm } from "./LoginForm";
 import { Logo } from "@/components/Logo";
 import Link from "next/link";
@@ -20,7 +21,9 @@ export default function AdminLoginPage() {
             Sign in to manage site content.
           </p>
           <div className="mt-6">
-            <LoginForm />
+            <Suspense fallback={<div className="h-10 animate-pulse rounded bg-charcoal-100" />}>
+              <LoginForm />
+            </Suspense>
           </div>
         </div>
         <div className="mt-6 text-center text-sm text-charcoal-500">

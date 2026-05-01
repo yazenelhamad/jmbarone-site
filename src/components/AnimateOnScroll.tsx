@@ -26,15 +26,13 @@ export function AnimateOnScroll({
   variant = "fade-up",
   delay = 0,
   className = "",
-  as: As = "div",
 }: {
   children: React.ReactNode;
   variant?: Variant;
   delay?: number;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
 }) {
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
@@ -62,8 +60,7 @@ export function AnimateOnScroll({
 
   const v = VARIANTS[variant];
   return (
-    // @ts-expect-error generic ref
-    <As
+    <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
       className={`transition-all duration-700 ease-out ${
@@ -71,6 +68,6 @@ export function AnimateOnScroll({
       } ${className}`}
     >
       {children}
-    </As>
+    </div>
   );
 }

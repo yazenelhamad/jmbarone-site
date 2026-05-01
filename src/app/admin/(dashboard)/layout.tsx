@@ -3,6 +3,9 @@ import { createClient } from "@/lib/supabase/server";
 import { AdminShell } from "../AdminShell";
 import { SetupRequired, isSupabaseConfigured } from "@/components/SetupRequired";
 
+// Admin pages read auth cookies at request time, so they cannot be prerendered.
+export const dynamic = "force-dynamic";
+
 export default async function DashboardLayout({
   children,
 }: {

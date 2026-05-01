@@ -11,11 +11,13 @@ import {
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/components/SetupRequired";
 
+type CountResult = { count: number | null };
+
 export default async function DashboardHomePage() {
-  let services = { count: 0 };
-  let testimonials = { count: 0 };
-  let documents = { count: 0 };
-  let submissions = { count: 0 };
+  let services: CountResult = { count: 0 };
+  let testimonials: CountResult = { count: 0 };
+  let documents: CountResult = { count: 0 };
+  let submissions: CountResult = { count: 0 };
 
   if (isSupabaseConfigured()) {
     try {
