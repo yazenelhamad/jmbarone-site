@@ -12,6 +12,7 @@ export type SiteSettings = {
   about_body: string;
   founded_year: number;
   service_area: string;
+  business_hours: string;
   facebook_url: string | null;
   instagram_url: string | null;
   updated_at: string;

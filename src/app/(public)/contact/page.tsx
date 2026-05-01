@@ -97,7 +97,7 @@ export default async function ContactPage() {
                     Hours
                   </div>
                   <div className="font-semibold text-navy-900">
-                    Mon–Fri 8a–6p · 24/7 Emergency
+                    {settings.business_hours}
                   </div>
                 </div>
               </li>

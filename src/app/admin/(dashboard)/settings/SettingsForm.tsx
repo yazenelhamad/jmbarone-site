@@ -24,6 +24,14 @@ export function SettingsForm({
           <div className="sm:col-span-2">
             <Field label="Address" name="address" defaultValue={settings.address ?? ""} />
           </div>
+          <div className="sm:col-span-2">
+            <Field
+              label="Hours"
+              name="business_hours"
+              defaultValue={settings.business_hours}
+              hint="Shown on the Contact page. Use a separator like · or | for multiple parts. Example: Mon–Fri 8a–6p · 24/7 Emergency"
+            />
+          </div>
         </div>
       </Section>
 
@@ -68,16 +76,19 @@ function Field({
   name,
   defaultValue,
   type = "text",
+  hint,
 }: {
   label: string;
   name: string;
   defaultValue?: string;
   type?: string;
+  hint?: string;
 }) {
   return (
     <div>
       <label className="label" htmlFor={name}>{label}</label>
       <input id={name} name={name} type={type} defaultValue={defaultValue} className="input" />
+      {hint && <p className="mt-1 text-xs text-charcoal-500">{hint}</p>}
     </div>
   );
 }

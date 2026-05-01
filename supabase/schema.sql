@@ -20,10 +20,15 @@ create table if not exists public.site_settings (
   about_body text not null default 'JM Barone Enterprises, Inc. has served Dallas/Fort Worth since 2003 with full turn-key cleaning, restoration, and maintenance services.',
   founded_year int not null default 2003,
   service_area text not null default 'Dallas / Fort Worth Metroplex',
+  business_hours text not null default 'Mon–Fri 8a–6p · 24/7 Emergency',
   facebook_url text,
   instagram_url text,
   updated_at timestamptz not null default now()
 );
+
+-- Idempotent migration for existing deployments
+alter table public.site_settings
+  add column if not exists business_hours text not null default 'Mon–Fri 8a–6p · 24/7 Emergency';
 
 -- ---------- services -----------------------------------------------------
 create table if not exists public.services (

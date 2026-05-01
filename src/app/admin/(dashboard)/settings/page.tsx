@@ -19,6 +19,9 @@ async function saveSettings(formData: FormData) {
     about_body: String(formData.get("about_body") ?? ""),
     founded_year: Number(formData.get("founded_year") ?? 2003),
     service_area: String(formData.get("service_area") ?? ""),
+    business_hours:
+      String(formData.get("business_hours") ?? "") ||
+      "Mon–Fri 8a–6p · 24/7 Emergency",
     facebook_url: String(formData.get("facebook_url") ?? "") || null,
     instagram_url: String(formData.get("instagram_url") ?? "") || null,
     updated_at: new Date().toISOString(),

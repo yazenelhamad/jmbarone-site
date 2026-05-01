@@ -24,6 +24,7 @@ export const FALLBACK_SETTINGS: SiteSettings = {
     "JM Barone Enterprises, Inc. has served Dallas/Fort Worth since 2003 with full turn-key cleaning, restoration, and maintenance services. We work with multifamily communities, property managers, and commercial clients who need reliable, on-time, quality work — every job, every time. Fully insured. Estimates available. 24-hour emergency response.",
   founded_year: 2003,
   service_area: "Dallas / Fort Worth Metroplex",
+  business_hours: "Mon–Fri 8a–6p · 24/7 Emergency",
   facebook_url: null,
   instagram_url: null,
   updated_at: new Date().toISOString(),
