@@ -212,7 +212,7 @@ insert into public.services (slug, title, short_description, long_description, i
 values
   ('carpet-services', 'Carpet Services',
    'Truck-mounted hot-water extraction and 24-hour water extraction for deep, healthy, like-new carpet.',
-   'Our carpet services use truck-mounted hot-water extraction equipment to lift soil, allergens, and stains that surface cleaning leaves behind. We treat high-traffic lanes, pet odors, and stubborn spots — and dry quickly so you can return rooms to use. Our 24-hour water extraction crew also responds to floods, burst pipes, and storm damage. Ideal for multifamily turns, offices, and post-construction cleanup.',
+   'Our carpet services use truck-mounted hot-water extraction equipment to lift soil, allergens, and stains that surface cleaning leaves behind. We treat high-traffic lanes, pet odors, and stubborn spots. Our 24-hour water extraction crew also responds to floods, burst pipes, and storm damage. Ideal for multifamily turns, offices, and post-construction cleanup.',
    'Sparkles',
    'https://images.pexels.com/photos/1454806/pexels-photo-1454806.jpeg?auto=compress&cs=tinysrgb&w=1600',
    array['Truck-mounted hot-water extraction','24-hour water extraction (floods, burst pipes, storm damage)','Spot & stain treatment','Pet odor neutralization','Multifamily turns / make-ready','Commercial maintenance programs'],
