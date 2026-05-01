@@ -89,7 +89,7 @@ export default async function HomePage() {
               {[
                 "Rapid response across DFW",
                 "Truck-mounted extraction",
-                "Direct insurance coordination",
+                "Restoration rentals available",
                 "Drying & restoration follow-through",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2">
