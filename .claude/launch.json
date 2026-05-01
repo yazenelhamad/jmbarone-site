@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "jmbarone-site",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "C:\\Users\\user\\Desktop\\Projects\\jmbarone-site",
+      "port": 3000
+    }
+  ]
+}
